@@ -1,0 +1,21 @@
+# RobbyMat
+
+RobbyMat is a 3 axis maschine at attraktor, a Hamburg based hackerspace. We
+try to get control over this maschines on several ways. This one here is a
+python based solution, to talk with the serial port.
+
+The protocol of the serial port is very custom, but easy. It's talking with
+19200 baud and response only on valid commands.
+
+Commands looks like:
+X MOVE 200
+or 
+Y GOTO 1200
+
+You can also set several axis at once:
+
+XYZ GOTO 0,0,0
+
+
+More comming soon. Visit us in Hamburg and watch us on youtube.
+
