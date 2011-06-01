@@ -16,6 +16,10 @@ You can also set several axis at once:
 
 XYZ GOTO 0,0,0
 
+Scripts:
+home.py     - drive all axis to zero position and reset state
+control.py  - drive all axis by keyboard
+hpgl.py     - use maschine as plotter
 
 More comming soon. Visit us in Hamburg and watch us on youtube.
 
