@@ -1,44 +1,10 @@
 
-import serial, string
-import pygame
+import serial, string, pygame, Robbymat
 from pygame.locals import *
-
-class Robbymat:
-    def __init__(self, serial_instance):
-        self.serial = serial_instance
-
-    def move_up(self):
-        ser.write("Z MOVE -10\n")
-        print ser.readline()[:-1]
-
-
-    def move_down(self):
-        ser.write("Z MOVE 10\n")
-        print ser.readline()[:-1]
-
-    def move_left(self):
-        ser.write("X MOVE -200\n")
-        print ser.readline()[:-1]
-
-
-    def move_right(self):
-        ser.write("X MOVE 200\n")
-        print ser.readline()[:-1]
-
-    def move_forward(self):
-        ser.write("Y MOVE 200\n")
-        print ser.readline()[:-1]
-
-    def move_backward(self):
-        ser.write("Y MOVE -200\n")
-        print ser.readline()[:-1]
-
 
 if __name__ == '__main__':
     print "Let's go"
-    ser = serial.Serial('/dev/ttyUSB0', 19200, 8, 'N', 1, timeout=1)
-
-    robby = Robbymat(ser)
+    robby = Robbymat.Robbymat()
 
     pygame.init()
     screen = pygame.display.set_mode((120, 120))
@@ -47,7 +13,6 @@ if __name__ == '__main__':
     background = background.convert()
     background.fill((0, 0, 0))
     screen.blit(background, (0, 0))
-    pygame.display.flip()
 
     action = None
 
@@ -75,6 +40,4 @@ if __name__ == '__main__':
             action()
 
         pygame.display.flip()
-
-
 
