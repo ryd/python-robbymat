@@ -22,9 +22,9 @@ if __name__ == '__main__':
                 sys.quit()
             if event.type == KEYDOWN:
                 if event.key == K_UP:
-                    action = robby.move_backward
-                if event.key == K_DOWN:
                     action = robby.move_forward
+                if event.key == K_DOWN:
+                    action = robby.move_backward
                 if event.key == K_LEFT:
                     action = robby.move_left
                 if event.key == K_RIGHT:
