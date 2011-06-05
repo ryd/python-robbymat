@@ -2,7 +2,7 @@
 import serial, string
 
 class Robbymat:
-    def __init__(self, serial_instance):
+    def __init__(self, serial_instance=None):
         if serial_instance == None:
             self.serial = serial.Serial('/dev/ttyUSB0', 19200, 8, 'N', 1, timeout=1)
         else:
@@ -54,4 +54,11 @@ class Robbymat:
         self.execute("XYZ HOME\n", 3)
 
     def move_xy(self, distance_x, distance_y):
-        self.execute("XY MOVE {0},{1}\n".format(distance_x, distance_y), 2)
+        if distance_x == 0 and distance_y == 0:
+            pass
+        elif distance_x == 0:
+            self.move_y(distance_y)
+        elif distance_y == 0:
+            self.move_x(distance_x)
+        else:
+            self.execute("XY MOVE {0},{1}\n".format(distance_x, distance_y), 2)
