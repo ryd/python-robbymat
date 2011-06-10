@@ -62,3 +62,13 @@ class Robbymat:
             self.move_x(distance_x)
         else:
             self.execute("XYZ MOVE {0},{1},0\n".format(distance_x, distance_y), 3)
+
+    def ramp(self, ramp):
+        self.execute("XYZ RAMP {0},{1},{2}\n".format(ramp, ramp, ramp), 3)
+
+    def maxspeed(self, speed):
+        self.execute("XYZ MAXSPEED {0},{1},{2}\n".format(speed, speed, speed), 3)
+
+    def minspeed(self, speed):
+        self.execute("XYZ MINSPEED {0},{1},{2}\n".format(speed, speed, speed), 3)
+
