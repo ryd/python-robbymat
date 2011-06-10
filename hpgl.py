@@ -3,11 +3,14 @@ import string, re, Robbymat
 
 class HPGL:
     def __init__(self):
-        self.pin_down = False
+        self.pin_down = True
         self.x = 0
         self.y = 0
-        self.deep = 10
+        self.deep = 50
         self.robby = Robbymat.Robbymat()
+        self.robby.ramp(1)
+        self.robby.minspeed(100)
+        self.robby.maxspeed(1000)
 
     def parse(self, token):
         cmd = token[0:2]
@@ -22,6 +25,11 @@ class HPGL:
                 print "error parsing", token
         elif cmd == "PU":
             self.move_up()
+            pos = re.split(",", token[3:])
+            if len(pos) == 2:
+                self.move(int(pos[0]), int(pos[1]))
+            else:
+                print "error parsing", token
         elif cmd == "PA":
             pass
         elif cmd == "IW":
@@ -34,12 +42,14 @@ class HPGL:
     def move_up(self):
         if self.pin_down:
             self.pin_down = False
-            self.robby.move_z(self.deep * -1)
+            print "Pin UP"
+            self.robby.move_z(-50)
 
     def move_down(self):
-        if not self.pin_down:
+        if self.pin_down == False:
             self.pin_down = True
-            self.robby.move_z(self.deep)
+            print "Pin DOWN"
+            self.robby.move_z(50)
 
     def move(self, pos_x, pos_y):
         self.robby.move_xy(pos_x - self.x, pos_y - self.y)
