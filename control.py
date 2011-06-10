@@ -5,6 +5,9 @@ from pygame.locals import *
 if __name__ == '__main__':
     print "Let's go"
     robby = Robbymat.Robbymat()
+    robby.ramp(5)
+    robby.minspeed(100)
+    robby.maxspeed(1000)
 
     pygame.init()
     screen = pygame.display.set_mode((120, 120))
