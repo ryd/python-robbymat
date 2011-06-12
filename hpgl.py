@@ -18,14 +18,14 @@ class HPGL:
             pass
         elif cmd == "PD":
             self.move_down()
-            pos = re.split(",", token[3:])
+            pos = re.split(",", token[2:])
             if len(pos) == 2:
                 self.move(int(pos[0]), int(pos[1]))
             else:
                 print "error parsing", token
         elif cmd == "PU":
             self.move_up()
-            pos = re.split(",", token[3:])
+            pos = re.split(",", token[2:])
             if len(pos) == 2:
                 self.move(int(pos[0]), int(pos[1]))
             else:
