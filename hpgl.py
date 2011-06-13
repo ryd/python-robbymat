@@ -11,6 +11,7 @@ class HPGL:
         self.robby.ramp(1)
         self.robby.minspeed(100)
         self.robby.maxspeed(1000)
+        self.faktor = 1.5
 
     def parse(self, token):
         cmd = token[0:2]
@@ -20,18 +21,21 @@ class HPGL:
             self.move_down()
             pos = re.split(",", token[2:])
             if len(pos) == 2:
-                self.move(int(pos[0]), int(pos[1]))
+                self.move(int(float(pos[0]) / self.faktor), int(float(pos[1]) / self.faktor))
             else:
                 print "error parsing", token
         elif cmd == "PU":
             self.move_up()
             pos = re.split(",", token[2:])
             if len(pos) == 2:
-                self.move(int(pos[0]), int(pos[1]))
+                self.move(int(float(pos[0]) / self.faktor), int(float(pos[1]) / self.faktor))
             else:
                 print "error parsing", token
         elif cmd == "PA":
-            pass
+            print "Using absolut number"
+        elif cmd == "PR":
+            print "Relative numbers mode not supported"
+            sys.exit()
         elif cmd == "IW":
             pass
         elif token == "\x0d\x0a" or token == "\x03\x0d\x0a" or token == '':
@@ -59,7 +63,7 @@ class HPGL:
 
 if __name__ == '__main__':
     print "Let's go"
-    f = open('hpgl/attraktor-logo-original.prn', 'r')
+    f = open('hpgl/duke_Nukem__by_DeadCamper.prn', 'r')
     hpgl = HPGL()
     #hpgl.robby.dry_run = True
     for line in f:
