@@ -8,10 +8,10 @@ class HPGL:
         self.y = 0
         self.deep = 50
         self.robby = Robbymat.Robbymat()
-        self.robby.ramp(1)
-        self.robby.minspeed(100)
+        self.robby.ramp(5)
+        self.robby.minspeed(300)
         self.robby.maxspeed(1000)
-        self.faktor = 1.5
+        self.faktor = 1
 
     def parse(self, token):
         cmd = token[0:2]
@@ -47,13 +47,13 @@ class HPGL:
         if self.pin_down:
             self.pin_down = False
             print "Pin UP"
-            self.robby.move_z(-50)
+            self.robby.move_z(-100)
 
     def move_down(self):
         if self.pin_down == False:
             self.pin_down = True
             print "Pin DOWN"
-            self.robby.move_z(50)
+            self.robby.move_z(100)
 
     def move(self, pos_x, pos_y):
         self.robby.move_xy(pos_x - self.x, pos_y - self.y)
